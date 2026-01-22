@@ -1,277 +1,216 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SingulAI Pen | Industrial Engineering Series</title>
+    <title>SingulAI | Architecting the Intelligence Layer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;300;400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 </head>
-<body class="bg-[#050506] text-[#d1d1d1] selection:bg-cyan-500/30 overflow-x-hidden antialiased">
+<body class="bg-black text-white antialiased overflow-x-hidden pitch-mode">
 
-    <!-- HUD Backdrop -->
-    <div class="fixed inset-0 pointer-events-none z-0 opacity-20">
-        <div class="absolute inset-0 cad-grid"></div>
-        <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-cyan-500/10 to-transparent"></div>
-    </div>
+    <!-- Global Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-white/10 px-4 md:px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 md:w-10 md:h-10 bg-white rounded-lg md:rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                <span class="text-black font-black text-base md:text-lg">S</span>
+            </div>
+            <div class="flex flex-col leading-none">
+                <span class="font-bold tracking-tighter text-sm md:text-lg">SingulAI</span>
+                <span class="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-white/50">Berserk Edition</span>
+            </div>
+        </div>
+        
+        <div class="hidden lg:flex items-center gap-8 text-[10px] font-bold tracking-widest text-white/40 uppercase">
+            <a href="#backend-section" class="hover:text-white transition-colors">Backend</a>
+            <a href="#frontend-section" class="hover:text-white transition-colors">Frontend</a>
+            <a href="#scope-section" class="hover:text-white transition-colors">Roadmap</a>
+            <a href="#strategy-section" class="hover:text-white transition-colors">Strategy</a>
+        </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-[#050506]/80 backdrop-blur-md">
-        <div class="max-w-screen-2xl mx-auto px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center gap-4 group cursor-pointer">
-                <div class="relative w-10 h-10 flex items-center justify-center">
-                    <div class="absolute inset-0 bg-cyan-400/20 rounded-full blur-md group-hover:bg-cyan-400/40 transition-all"></div>
-                    <div class="relative w-full h-full border border-white/20 rounded-full flex items-center justify-center logo-core">
-                        <i data-lucide="aperture" class="w-5 h-5 text-cyan-400"></i>
-                    </div>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-light tracking-[0.5em] text-xs uppercase text-white">Singul<span class="text-cyan-400 font-bold">AI</span></span>
-                    <span class="text-[8px] font-mono text-zinc-600 tracking-tighter">PROTOCOL_V4.0.2</span>
-                </div>
+        <div class="flex items-center gap-4">
+            <div class="flex bg-white/5 p-1 rounded-full text-[9px] md:text-[10px] font-bold border border-white/10">
+                <button id="lang-pt" class="px-3 md:px-4 py-1.5 md:py-2 rounded-full transition-all hover:text-white">PT</button>
+                <button id="lang-en" class="px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white text-black shadow-lg transition-all">EN</button>
             </div>
-            <div class="hidden md:flex gap-12 text-[10px] uppercase tracking-[0.4em] font-light text-zinc-400">
-                <a href="#engineering" class="hover:text-cyan-400 transition-colors">Engineering</a>
-                <a href="#function" class="hover:text-cyan-400 transition-colors">Authentication</a>
-                <a href="#legacy" class="hover:text-cyan-400 transition-colors">Legacy</a>
-            </div>
-            <button class="px-6 py-2 border border-white/10 text-[9px] uppercase tracking-[0.3em] bg-white/5 hover:bg-white/10 transition-all rounded-sm flex items-center gap-3">
-                <span class="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-pulse"></span>
-                Secure Access
-            </button>
         </div>
     </nav>
 
-    <!-- Section 1: Hero -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-8 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-            <div class="hero-content">
-                <div class="inline-block mb-6 px-3 py-1 border border-cyan-500/30 rounded-full">
-                    <span class="text-[9px] font-mono tracking-[0.3em] text-cyan-400 uppercase">Titanium Series // Batch 01</span>
-                </div>
-                <h1 class="text-6xl md:text-8xl font-serif leading-[1.1] mb-8 text-white">
-                    The signature of <br>
-                    <span class="italic text-zinc-500">who you are.</span>
-                </h1>
-                <p class="text-zinc-400 text-sm md:text-lg max-w-lg font-light leading-relaxed mb-12 tracking-wide">
-                    Identity that outlives you. Engraved in eternity through Grade 5 Titanium and Neural-Blockchain synchronization.
-                </p>
-                <div class="flex flex-wrap gap-8 items-center border-t border-white/5 pt-8">
-                    <div class="flex flex-col">
-                        <span class="text-[10px] uppercase tracking-widest text-zinc-600 mb-2">Structure</span>
-                        <span class="text-xs font-mono text-zinc-200">UNIBODY TITANIUM</span>
-                    </div>
-                    <div class="w-px h-10 bg-white/10"></div>
-                    <div class="flex flex-col">
-                        <span class="text-[10px] uppercase tracking-widest text-zinc-600 mb-2">Protocol</span>
-                        <span class="text-xs font-mono text-zinc-200">BLOCKCHAIN LEDGER</span>
-                    </div>
-                </div>
+    <!-- Side Panel Overlay -->
+    <div id="side-panel-overlay" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[60] opacity-0 pointer-events-none transition-opacity duration-500"></div>
+    <div id="side-panel" class="fixed right-0 top-0 h-full w-full max-w-2xl bg-zinc-950 z-[70] shadow-2xl translate-x-full transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] border-l border-white/5">
+        <div class="h-full flex flex-col p-6 md:p-12">
+            <div class="flex justify-between items-center mb-8 md:mb-16">
+                <div id="panel-badge" class="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-[9px] md:text-[10px] font-bold tracking-[0.3em] uppercase text-blue-400"></div>
+                <button id="close-panel" class="p-2 md:p-3 hover:bg-white/5 rounded-full transition-colors border border-transparent hover:border-white/10">
+                    <i data-lucide="x" class="w-5 h-5 md:w-6 md:h-6 text-white/50"></i>
+                </button>
             </div>
-            
-            <div class="relative">
-                <div class="hero-image-wrapper relative group">
-                    <div class="absolute -inset-10 bg-cyan-500/5 blur-[120px] rounded-full group-hover:bg-cyan-500/10 transition-all duration-1000"></div>
-                    <img src="https://r2-bucket.flowith.net/f/526024bb7803e87c/singulai_pen_hero_product_image_index_1%40768x1344.jpeg" 
-                         alt="SingulAI Pen" class="w-full max-w-lg mx-auto rounded-lg shadow-[0_0_80px_rgba(0,0,0,0.5)] grayscale hover:grayscale-0 transition-all duration-1000 scale-95 hover:scale-100">
-                    
-                    <!-- Decorative HUD elements -->
-                    <div class="absolute top-0 right-0 border-t border-r border-cyan-500/40 w-16 h-16 pointer-events-none"></div>
-                    <div class="absolute bottom-0 left-0 border-b border-l border-cyan-500/40 w-16 h-16 pointer-events-none"></div>
-                </div>
+            <div id="panel-content" class="flex-1 overflow-y-auto custom-scrollbar pr-2 md:pr-6">
+                <!-- Content injected by JS -->
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Section 2: Technical Exploded View -->
-    <section id="engineering" class="py-40 relative bg-[#070708] border-y border-white/5 overflow-hidden">
-        <div class="absolute inset-0 cad-grid opacity-30"></div>
-        <div class="max-w-7xl mx-auto px-8 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-32 gap-8">
-                <div>
-                    <h2 class="text-[10px] font-mono uppercase tracking-[0.5em] text-cyan-500 mb-6 flex items-center gap-3">
-                        <span class="w-8 h-[1px] bg-cyan-500"></span>
-                        Exploded View Assembly
-                    </h2>
-                    <h3 class="text-4xl md:text-5xl font-serif text-white">Discreet. Internal. Eternal.</h3>
-                </div>
-                <div class="font-mono text-[9px] text-zinc-500 leading-relaxed uppercase tracking-widest bg-white/5 p-6 border border-white/10">
-                    COORD_SYS: 40.7128 N, 74.0060 W<br>
-                    RENDER: PBR_REALTIME_V4<br>
-                    TOLERANCE: +/- 0.001mm
-                </div>
+    <main class="relative">
+        <!-- Hero Section -->
+        <section id="slide-hero" class="min-h-screen flex flex-col justify-center px-6 relative overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://r2-bucket.flowith.net/f/c0e619c0ce26d733/ai_blockchain_architectural_visualization_index_0%404096x2286.jpeg" 
+                     class="w-full h-full object-cover opacity-30 md:opacity-40 scale-105" alt="Master Architecture">
+                <div class="absolute inset-0 bg-gradient-to-b from-black via-black/20 to-black"></div>
             </div>
 
-            <div class="relative min-h-[800px] flex items-center justify-center">
-                <!-- SVG Container for connecting lines -->
-                <svg class="absolute inset-0 w-full h-full pointer-events-none" id="tech-svg-lines">
-                    <defs>
-                        <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:rgba(0,242,255,0.1);stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:rgba(0,242,255,1);stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-
-                <div class="relative w-full max-w-5xl group">
-                    <img src="https://r2-bucket.flowith.net/f/00b2a34c37cb4b8d/singulai_pen_technical_exploded_view_index_0%401344x768.jpeg" 
-                         alt="Technical Assembly" class="w-full opacity-70 contrast-125 saturate-0 group-hover:opacity-90 transition-opacity duration-1000">
+            <div class="relative z-10 max-w-6xl mx-auto w-full pt-20">
+                <div class="reveal-hero text-center md:text-left">
+                    <span class="text-blue-500 font-mono text-[10px] md:text-sm tracking-[0.5em] mb-4 md:mb-6 block uppercase" data-i18n="systemReady">PRE-SEED ARCHITECTURE</span>
+                    <h1 class="text-5xl md:text-7xl lg:text-[120px] font-black tracking-tighter mb-6 md:mb-10 leading-[0.9] uppercase">
+                        <span class="block">SingulAI</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/40 to-white/10 block">Protocol 2026</span>
+                    </h1>
+                    <p class="text-base md:text-xl lg:text-2xl text-white/50 max-w-3xl font-light mb-12 md:mb-16 leading-relaxed mx-auto md:mx-0" data-i18n="heroSubtitle"></p>
                     
-                    <div id="technical-labels-container" class="absolute inset-0">
-                        <!-- Populated via JS -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Functional Simulation -->
-    <section id="function" class="py-40 bg-[#050506] relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="grid lg:grid-cols-2 gap-32 items-center">
-                <div class="simulation-hub relative">
-                    <div class="aspect-square bg-zinc-950 rounded-lg border border-white/10 relative p-10 flex flex-col justify-between overflow-hidden shadow-2xl">
-                        <!-- Scanning UI -->
-                        <div class="scan-line"></div>
+                    <div class="flex gap-4 no-print flex-wrap justify-center md:justify-start">
+                        <!-- PITCH START Button -->
+                        <button class="bg-white text-black px-10 py-5 rounded-2xl font-black text-sm tracking-widest hover:scale-105 transition-transform flex items-center gap-3">
+                            <i data-lucide="play" class="w-4 h-4 fill-black"></i>
+                            PITCH START
+                        </button>
                         
-                        <div class="flex justify-between items-start z-10">
-                            <div class="font-mono text-[10px]">
-                                <p class="text-cyan-500 animate-pulse">[AUTHENTICATION_READY]</p>
-                                <p class="text-zinc-600 mt-2">WAITING FOR BIOMETRIC INPUT...</p>
-                            </div>
-                            <div id="auth-status-seal" class="w-20 h-20 border-2 border-white/5 rounded-full flex items-center justify-center transition-all duration-700">
-                                <i data-lucide="shield-alert" class="text-zinc-800 w-8 h-8"></i>
-                            </div>
-                        </div>
-
-                        <div class="relative flex-grow flex items-center justify-center">
-                            <svg class="w-full h-40 overflow-visible" viewBox="0 0 400 200">
-                                <path id="signature-trace" d="M30,120 C80,40 120,160 180,100 S320,40 370,120" 
-                                      fill="none" stroke="url(#sig-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-dasharray="1000" stroke-dashoffset="1000" />
-                                <defs>
-                                    <linearGradient id="sig-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                                        <stop offset="0%" style="stop-color:#00f2ff" />
-                                        <stop offset="100%" style="stop-color:#7000ff" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <div id="touch-point" class="absolute w-4 h-4 bg-cyan-400 rounded-full blur-sm opacity-0"></div>
-                        </div>
-
-                        <div class="flex justify-between items-end z-10 border-t border-white/5 pt-6">
-                            <div class="flex gap-4">
-                                <div class="w-8 h-8 bg-white/5 border border-white/10 rounded flex items-center justify-center">
-                                    <i data-lucide="fingerprint" class="w-4 h-4 text-zinc-500"></i>
-                                </div>
-                                <div class="w-8 h-8 bg-white/5 border border-white/10 rounded flex items-center justify-center">
-                                    <i data-lucide="eye" class="w-4 h-4 text-zinc-500"></i>
-                                </div>
-                            </div>
-                            <div class="text-[9px] font-mono text-zinc-500 text-right">
-                                HASH: 0x82f...a12<br>
-                                SOURCE: TITANIUM_CORE_01
-                            </div>
-                        </div>
+                        <!-- NEW ACCESS DASHBOARD Button -->
+                        <a href="dashboard.html" 
+                           class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-10 py-5 rounded-2xl font-black text-sm tracking-widest hover:scale-105 transition-transform flex items-center gap-3 hover:opacity-90">
+                            <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                            ACCESS DASHBOARD
+                        </a>
                     </div>
-                    <!-- Soft Glow Base -->
-                    <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-3/4 h-[2px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent blur-md"></div>
                 </div>
+            </div>
+        </section>
 
-                <div class="content-panel">
-                    <h2 class="text-[10px] uppercase tracking-[0.5em] text-violet-400 mb-8 font-mono">Verificação Tri-Fatorial</h2>
-                    <h3 class="text-5xl font-serif text-white mb-10 leading-tight">Autenticação Afetiva. <br> Segurança Eterna.</h3>
-                    <div class="space-y-12">
-                        <div class="group">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center group-hover:border-cyan-500 transition-colors">
-                                    <i data-lucide="lock-keyhole" class="w-4 h-4 text-zinc-500 group-hover:text-cyan-400"></i>
-                                </div>
-                                <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-300">Cadeado de Intenção</h4>
-                            </div>
-                            <p class="text-zinc-500 text-sm leading-relaxed max-w-md ml-14">
-                                Biometria, blockchain e legado. O dispositivo só desperta quando reconhece a sincronia perfeita entre sua íris e o mapa dermopapilar.
-                            </p>
-                        </div>
-                        <div class="group">
-                            <div class="flex items-center gap-4 mb-4">
-                                <div class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center group-hover:border-violet-500 transition-colors">
-                                    <i data-lucide="cpu" class="w-4 h-4 text-zinc-500 group-hover:text-violet-400"></i>
-                                </div>
-                                <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-300">Legacy Minting</h4>
-                            </div>
-                            <p class="text-zinc-500 text-sm leading-relaxed max-w-md ml-14">
-                                Cada traço é processado pela IA Afetiva e convertido em um selo NFT imutável. Sua assinatura não é apenas tinta; é prova de existência.
-                            </p>
-                        </div>
-                    </div>
-                    <button id="start-auth" class="mt-16 px-10 py-4 bg-white text-[#050506] text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-cyan-400 transition-all rounded-sm">
-                        Execute Auth Protocol
-                    </button>
-                </div>
+        <!-- Mode Toggle -->
+        <div class="fixed bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-50">
+            <div class="bg-zinc-900/90 backdrop-blur-3xl p-1.5 rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex items-center gap-1.5">
+                <button id="mode-pitch" class="px-4 md:px-6 py-2 md:py-2.5 rounded-xl transition-all font-bold text-[9px] md:text-[10px] uppercase tracking-widest flex items-center gap-2 bg-white text-black shadow-lg">
+                    <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                    Pitch
+                </button>
+                <button id="mode-deep" class="px-4 md:px-6 py-2 md:py-2.5 rounded-xl transition-all font-bold text-[9px] md:text-[10px] uppercase tracking-widest flex items-center gap-2 text-white/40 hover:text-white">
+                    <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                    Technical
+                </button>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="legacy" class="pt-40 pb-20 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="text-center mb-40">
-                <p class="text-3xl md:text-5xl font-serif italic text-white mb-12 opacity-90 leading-snug">
-                    “The signature of who you are — <br>engraved in eternity.”
-                </p>
-                <div class="w-px h-24 bg-gradient-to-b from-cyan-500 to-transparent mx-auto"></div>
+        <!-- content sections -->
+        <div class="max-w-7xl mx-auto px-6 space-y-32 md:space-y-64 py-20 md:py-32">
+            
+            <!-- Backend -->
+            <section id="backend-section" class="scroll-mt-32">
+                <div class="flex flex-col lg:flex-row gap-12 lg:gap-24 items-start">
+                    <div class="w-full lg:w-5/12 lg:sticky lg:top-32">
+                        <span class="text-blue-500 font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block" data-i18n="coreLabel">CORE INFRASTRUCTURE</span>
+                        <h2 class="text-4xl md:text-6xl font-black mb-6 md:mb-10 tracking-tighter uppercase" data-i18n="backendTitle">Backend Mesh</h2>
+                        <div id="backend-intro" class="text-base md:text-lg text-white/60 leading-relaxed mb-10 md:mb-16 font-light"></div>
+                        
+                        <div id="backend-drawers" class="space-y-4">
+                            <!-- JS Injection -->
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-7/12 rounded-[24px] md:rounded-[40px] overflow-hidden border border-white/5 bg-zinc-950 relative group">
+                        <img src="https://r2-bucket.flowith.net/f/f954f10bf5a2edfd/backend_architecture_3d_icon_index_0%402048x2048.jpeg" 
+                             class="w-full aspect-square object-cover opacity-60 group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Frontend -->
+            <section id="frontend-section" class="scroll-mt-32">
+                <div class="flex flex-col lg:flex-row-reverse gap-12 lg:gap-24 items-start">
+                    <div class="w-full lg:w-5/12 lg:sticky lg:top-32">
+                        <span class="text-purple-500 font-bold tracking-[0.4em] text-[10px] uppercase mb-6 block" data-i18n="interfaceLabel">USER LAYER</span>
+                        <h2 class="text-4xl md:text-6xl font-black mb-6 md:mb-10 tracking-tighter uppercase" data-i18n="frontendTitle">Human Interface</h2>
+                        <div id="frontend-intro" class="text-base md:text-lg text-white/60 leading-relaxed mb-10 md:mb-16 font-light"></div>
+                        
+                        <div id="frontend-drawers" class="space-y-4">
+                            <!-- JS Injection -->
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-7/12 rounded-[24px] md:rounded-[40px] overflow-hidden border border-white/5 bg-zinc-950 relative group">
+                        <img src="https://r2-bucket.flowith.net/f/b4a17be4d580dd72/frontend_architecture_isometric_icon_index_1%402048x2048.jpeg" 
+                             class="w-full aspect-square object-cover opacity-60 group-hover:scale-110 transition-transform duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MVP Scope Grid -->
+            <section id="scope-section" class="scroll-mt-32">
+                <div class="text-center mb-16 md:mb-32">
+                    <h2 class="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase" data-i18n="scopeTitle">Roadmap</h2>
+                    <p class="text-white/40 max-w-2xl mx-auto text-base md:text-lg font-light px-4" data-i18n="scopeSubtitle"></p>
+                </div>
+
+                <div id="module-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+                    <!-- Cards injected by JS -->
+                </div>
+            </section>
+
+            <!-- Strategic Strategy -->
+             <section id="strategy-section" class="bg-zinc-950 rounded-[32px] md:rounded-[60px] p-8 md:p-20 border border-white/10 relative overflow-hidden">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="text-blue-500 font-mono text-xs md:text-sm mb-6 md:mb-8 block tracking-[0.5em] uppercase" data-i18n="strategyLabel">STRATEGIC MOAT</span>
+                    <h2 class="text-4xl md:text-6xl font-black mb-8 md:mb-10 tracking-tighter uppercase" data-i18n="strategyTitle">The Alpha Convergence</h2>
+                    <p class="text-xl md:text-2xl text-white/70 font-light leading-relaxed mb-10 md:mb-12" id="strategy-content"></p>
+                    
+                    <div class="flex items-center gap-8 md:gap-12">
+                        <div class="flex flex-col">
+                            <span class="text-3xl md:text-4xl font-black text-white">16</span>
+                            <span class="text-[9px] md:text-[10px] text-white/40 uppercase tracking-widest">Week Sprint</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-3xl md:text-4xl font-black text-white">10k+</span>
+                            <span class="text-[9px] md:text-[10px] text-white/40 uppercase tracking-widest">Global Nodes</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute right-[-10%] bottom-[-10%] w-2/3 h-full opacity-10 md:opacity-20 pointer-events-none blur-2xl">
+                    <img src="https://r2-bucket.flowith.net/f/daf157b1bf3908ed/ai_engine_isometric_icon_index_3.jpeg" class="w-full h-full object-contain rotate-12">
+                </div>
+             </section>
+        </div>
+    </main>
+
+    <footer class="border-t border-white/5 py-16 md:py-32 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start text-white/30 text-[10px] md:text-xs">
+            <div class="mb-12 md:mb-0">
+                 <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg md:rounded-2xl flex items-center justify-center mb-6 md:mb-8">
+                    <span class="text-black font-black text-lg md:text-xl">S</span>
+                </div>
+                <p class="max-w-xs leading-loose">© 2026 SingulAI Technologies. <br>Architected for Hyper-scale Intelligence. <br>Silicon Valley / Global nodes.</p>
             </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-32">
-                <div class="space-y-6">
-                    <h5 class="text-[10px] font-mono text-zinc-200 uppercase tracking-widest border-b border-white/5 pb-4">Biometrics</h5>
-                    <ul class="text-[9px] font-mono text-zinc-600 space-y-3 uppercase tracking-widest">
-                        <li>360 Dermopapilar</li>
-                        <li>Iris Recognition</li>
-                        <li>Affective AI Core</li>
-                    </ul>
+            <div class="grid grid-cols-2 gap-12 md:gap-24">
+                <div class="flex flex-col gap-3 md:gap-4">
+                    <span class="text-white font-bold mb-2 uppercase tracking-widest text-[9px] md:text-[11px]">Resources</span>
+                    <a href="#" class="hover:text-white transition-colors">Technical Whitepaper</a>
+                    <a href="#" class="hover:text-white transition-colors">API Documentation</a>
+                    <a href="#" class="hover:text-white transition-colors">Tokenomics v2.1</a>
                 </div>
-                <div class="space-y-6">
-                    <h5 class="text-[10px] font-mono text-zinc-200 uppercase tracking-widest border-b border-white/5 pb-4">Cripto</h5>
-                    <ul class="text-[9px] font-mono text-zinc-600 space-y-3 uppercase tracking-widest">
-                        <li>Legacy Blockchain</li>
-                        <li>NFT Proof of Life</li>
-                        <li>Quantum Encryption</li>
-                    </ul>
-                </div>
-                <div class="space-y-6">
-                    <h5 class="text-[10px] font-mono text-zinc-200 uppercase tracking-widest border-b border-white/5 pb-4">Hardware</h5>
-                    <ul class="text-[9px] font-mono text-zinc-600 space-y-3 uppercase tracking-widest">
-                        <li>Titanium Grade 5</li>
-                        <li>Haptic Engine V3</li>
-                        <li>Modular Chassis</li>
-                    </ul>
-                </div>
-                <div class="space-y-6">
-                    <h5 class="text-[10px] font-mono text-zinc-200 uppercase tracking-widest border-b border-white/5 pb-4">Project</h5>
-                    <ul class="text-[9px] font-mono text-zinc-600 space-y-3 uppercase tracking-widest">
-                        <li>SingulAI Industries</li>
-                        <li>2026 Pitch Deck</li>
-                        <li>Auth Eternal</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-8">
-                <p class="text-[8px] font-mono text-zinc-700 tracking-[0.6em] uppercase">© 2026 SingulAI Pen. All Rights Reserved.</p>
-                <div class="flex gap-12 text-[8px] font-mono text-zinc-500 tracking-[0.4em] uppercase">
-                    <a href="#" class="hover:text-cyan-400">Technical_Spec</a>
-                    <a href="#" class="hover:text-cyan-400">Whitepaper</a>
+                <div class="flex flex-col gap-3 md:gap-4">
+                    <span class="text-white font-bold mb-2 uppercase tracking-widest text-[9px] md:text-[11px]">Legal</span>
+                    <a href="#" class="hover:text-white transition-colors">Data Sovereignty</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy Shield</a>
+                    <a href="#" class="hover:text-white transition-colors">Compliance Hub</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script type="module" src="main.js"></script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
