@@ -2,8 +2,8 @@ const terminal = document.getElementById('audit-raw'); // Mapping old terminal c
 
 const mockEvents = [
     { type: "SEC", source: "GUARD", msg: "Memory Transaction signed (W2I)." },
-    { type: "DATA", source: "HLM", msg: "Neural buffer synchronized with Ollama." },
-    { type: "SYS", source: "ORCH", msg: "n8n workflow heartbeat detected." },
+    { type: "DATA", source: "HLM", msg: "Neural buffer synchronized with SingulAI memory." },
+    { type: "SYS", source: "ORCH", msg: "SingulAI orchestration heartbeat detected." },
     { type: "IA", source: "CORE", msg: "Context window purge completed." }
 ];
 
