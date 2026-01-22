@@ -14,6 +14,31 @@ body {
     background: var(--obsidian);
 }
 
+.lang-toggle {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 0;
+}
+
+.lang-toggle::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.lang-toggle:hover {
+    color: var(--gold);
+}
+
 .font-mono {
     font-family: 'JetBrains Mono', monospace;
 }

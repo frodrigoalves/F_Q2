@@ -66,9 +66,9 @@ function performOrchestration(key) {
 }
 
 function updateResourceBars() {
-    const ollama = document.getElementById('bar-ollama');
-    const n8n = document.getElementById('bar-n8n');
+    const renderLatency = document.getElementById('bar-render-latency');
+    const orchestrator = document.getElementById('bar-orchestrator');
     
-    gsap.to(ollama, { width: `${Math.floor(Math.random() * 40 + 5)}%`, duration: 1 });
-    gsap.to(n8n, { width: `${Math.floor(Math.random() * 30 + 60)}%`, duration: 1 });
+    gsap.to(renderLatency, { width: `${Math.floor(Math.random() * 40 + 5)}%`, duration: 1 });
+    gsap.to(orchestrator, { width: `${Math.floor(Math.random() * 30 + 60)}%`, duration: 1 });
 }

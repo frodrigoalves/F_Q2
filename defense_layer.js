@@ -72,7 +72,7 @@ export function initDefenseLayer() {
     });
 
     function runHeadlessSimulation() {
-        addLog("CRITICAL", "STACK", "Headless Mode Active: n8n/Ollama isolation absent.");
+        addLog("CRITICAL", "STACK", "Headless Mode Active: orchestration isolation absent.");
         addLog("ALERT", "GOVERNANCE", "Detected Context Pollution in inference pipeline.");
         
         for(let i=0; i<20; i++) {
@@ -80,7 +80,7 @@ export function initDefenseLayer() {
         }
 
         setTimeout(() => {
-            addLog("FAILURE", "OLLAMA", "Vector leakage detected. Prompt injection successful.");
+            addLog("FAILURE", "SINGULAI", "Vector leakage detected. Prompt injection successful.");
             isRunning = false;
             btnSimulate.disabled = false;
             btnSimulate.classList.remove('opacity-50');

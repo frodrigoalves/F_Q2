@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 09 | Portal Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-[#050505] text-white">
+    <nav class="w-full px-8 py-6 flex flex-col gap-4 border-b border-white/10 md:flex-row md:items-center md:justify-between">
+        <div>
+            <span class="text-[10px] uppercase tracking-[0.4em] text-white/50">Portal</span>
+            <h1 class="text-lg font-bold">Page 09 • Brand Experience</h1>
+        </div>
+        <div class="flex flex-wrap gap-3 items-center">
+            <button class="lang-toggle" type="button" aria-label="Switch to Portuguese">PT</button>
+            <a class="px-4 py-2 rounded-full border border-white/10 text-xs uppercase tracking-widest hover:border-[#D4AF37]/60" href="../index.html#portal">Back to Portal</a>
+            <a class="px-4 py-2 rounded-full border border-white/10 text-xs uppercase tracking-widest hover:border-[#D4AF37]/60" href="../pagina10/">Page 10</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-6 py-16">
+        <section id="hero">
+            <div id="hero-content" class="space-y-6">
+                <p class="text-[11px] uppercase tracking-[0.5em] text-white/40">Portal Experience</p>
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight">Identity, interface, and visual signals</h2>
+                <p class="text-white/60 max-w-2xl">A focused overview of brand assets and interface foundations. This is the second portal session (pages 09–10).</p>
+                <div class="flex gap-4">
+                    <a class="glass-button px-5 py-3 rounded-full text-xs uppercase tracking-widest" href="#logos">Logos</a>
+                    <a class="glass-button px-5 py-3 rounded-full text-xs uppercase tracking-widest" href="#colors">Colors</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="logos" class="mt-16">
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold">Logo Library</h3>
+                <p class="text-white/50 text-sm">Core variations of the SingulAI identity system.</p>
+            </div>
+            <div id="logo-grid" class="grid md:grid-cols-2 gap-6"></div>
+        </section>
+
+        <section id="colors" class="mt-16">
+            <div class="mb-8">
+                <h3 class="text-2xl font-bold">Color Palette</h3>
+                <p class="text-white/50 text-sm">Review and copy the official brand colors.</p>
+            </div>
+            <div id="color-palette" class="space-y-4"></div>
+        </section>
+
+        <section class="mt-16 grid gap-8">
+            <div class="mockup-group glass-card p-8 rounded-3xl border border-white/5">
+                <h4 class="text-lg font-semibold mb-2">Portal applications</h4>
+                <p class="text-white/50 text-sm">Prototypes for immersive experiences and governance dashboards.</p>
+            </div>
+            <div class="mockup-group glass-card p-8 rounded-3xl border border-white/5">
+                <h4 class="text-lg font-semibold mb-2">Visual architecture</h4>
+                <p class="text-white/50 text-sm">Interface layers and guidelines for visual consistency.</p>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="../main.js"></script>
+</body>
+</html>
