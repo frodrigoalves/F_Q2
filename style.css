@@ -1,132 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+
 :root {
-    --accent: #ffffff;
-    --bg-deep: #000000;
-    --card-bg: rgba(15, 15, 15, 0.7);
+  --obsidian: #0B0B0B;
+  --electric-blue: #26B0E2;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-deep);
-    scroll-behavior: smooth;
-}
-
-/* Print Handling */
-@media print {
-    .no-print {
-        display: none !important;
-    }
-}
-
-/* Hide Technical Elements in Pitch Mode */
-.pitch-mode .technical-detail,
-.pitch-mode .context-note,
-.pitch-mode .engineering-notes {
-    display: none !important;
-}
-
-.glass-nav {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: saturate(180%) blur(25px);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
 }
 
 .glass-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.glass-card:hover {
-    background: rgba(30, 30, 30, 0.9);
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-8px);
+.logo-card {
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Custom Scrollbar */
-.custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+.logo-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(38, 176, 226, 0.3);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
-/* Drawer Progressive Disclosure */
-.drawer-item {
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+.color-swatch {
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-.drawer-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease;
-    opacity: 0;
+.color-swatch:active {
+  transform: scale(0.95);
 }
 
-.drawer-open .drawer-content {
-    max-height: 1000px;
-    opacity: 1;
+#hero h1 {
+  background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0.4) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.drawer-open .drawer-icon {
-    transform: rotate(180deg);
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.drawer-open {
-    border-color: rgba(255, 255, 255, 0.2) !important;
-    background: rgba(255, 255, 255, 0.03) !important;
+::-webkit-scrollbar-track {
+  background: #050505;
 }
 
-/* Progress Bars */
-.progress-bar-container {
-    height: 3px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
 }
 
-.progress-bar-fill {
-    height: 100%;
-    background: white;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    transition: width 2s cubic-bezier(0.65, 0, 0.35, 1);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--electric-blue);
 }
 
-/* Side Panel */
-#side-panel.open {
-    transform: translateX(0);
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
-#side-panel-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
+.floating {
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Mobile Responsiveness Fine-tuning */
-@media (max-width: 768px) {
-    .reveal-hero h1 {
-        letter-spacing: -0.04em;
-    }
-    
-    .drawer-item button {
-        padding: 1.5rem !important;
-    }
-    
-    .drawer-content {
-        padding: 0 1.5rem 1.5rem 1.5rem !important;
-    }
-
-    #side-panel {
-        max-width: 100%;
-    }
-}
-
-/* Touch Device Enhancements */
-@media (hover: none) {
-    .glass-card:hover {
-        transform: none;
-    }
+.text-glow {
+  text-shadow: 0 0 20px rgba(38, 176, 226, 0.5);
 }
